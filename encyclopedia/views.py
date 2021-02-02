@@ -26,3 +26,6 @@ def entry(request, title):
         "title": title,
         "content": util.get_entry(title)
     })
+
+def new(request):
+    return render(request, "encyclopedia/new.html")
