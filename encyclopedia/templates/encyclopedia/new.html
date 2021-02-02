@@ -7,8 +7,7 @@ Create New Page
 <h1>Create New Page</h1>
 <form action="{% url 'new' %}" method="POST">
     {% csrf_token %}
-    <input id="title" type="text" name="title" required>
-    <textarea id="content" name="content" rows="4" cols="50"></textarea>
+    {{ form }}
     <input type="submit">
 </form>
 {% endblock %}

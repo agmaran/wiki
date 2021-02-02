@@ -5,7 +5,7 @@ from . import util
 
 class NewEntryForm(forms.Form):
     title = forms.CharField(label='Title for the page')
-    content = forms.CharField(label='Markdown content for the page')
+    content = forms.CharField(label='Markdown content for the page', widget=forms.Textarea)
 
 
 def index(request):
@@ -39,4 +39,8 @@ def new(request):
         if form.is_valid():
             util.save_entry(
                 form.cleaned_data["title"], form.cleaned_data["content"])
-    return render(request, "encyclopedia/new.html")
+    else:
+        form = NewEntryForm()
+    return render(request, "encyclopedia/new.html", {
+        'form': form
+    })
