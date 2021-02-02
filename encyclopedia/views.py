@@ -48,6 +48,10 @@ def new(request):
             else:
                 util.save_entry(
                     form.cleaned_data["title"], form.cleaned_data["content"])
+                return render(request, "encyclopedia/entry.html", {
+                    "title": form.cleaned_data["title"],
+                    "content": util.get_entry(form.cleaned_data["title"])
+                })
     else:
         form = NewEntryForm()
     return render(request, "encyclopedia/new.html", {
