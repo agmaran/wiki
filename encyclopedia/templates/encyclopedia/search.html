@@ -6,11 +6,15 @@ Page not found
 <h1>Page not found</h1>
 <div>The requested page was not found.</div>
 <h2>You might be looking for:</h2>
-<ul>
-    {% for match in matches %}
-    <a href="{% url 'entry' match %}">
-        <li>{{ match }}</li>
-    </a>
-    {% endfor %}
-</ul>
+<div>
+    <ul>
+        {% for match in matches %}
+        <a href="{% url 'entry' match %}">
+            <li>{{ match }}</li>
+        </a>
+        {% empty %}
+        <li>There are no similar search results.</li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

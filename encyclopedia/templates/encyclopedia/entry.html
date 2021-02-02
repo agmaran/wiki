@@ -8,11 +8,11 @@ Page not found - Encyclopedia
 {% endblock %}
 
 {% block body %}
-{% if content == None %}
-<h1>Page not found</h1>
-<div>The requested page was not found.</div>
-{% else %}
-<h1>{{title}}</h1>
-<div>{{content}}</div>
-{% endif %}
+    {% if content == None %}
+        <h1>Page not found</h1>
+        <div>The requested page was not found.</div>
+    {% else %}
+        <h1>{{title}}</h1>
+        <div>{{content}}</div>
+    {% endif %}
 {% endblock %}
