@@ -5,7 +5,8 @@ from . import util
 
 class NewEntryForm(forms.Form):
     title = forms.CharField(label='Title for the page')
-    content = forms.CharField(label='Markdown content for the page', widget=forms.Textarea)
+    content = forms.CharField(
+        label='Markdown content for the page', widget=forms.Textarea)
 
 
 def index(request):
@@ -37,8 +38,16 @@ def new(request):
     if request.method == "POST":
         form = NewEntryForm(request.POST)
         if form.is_valid():
-            util.save_entry(
-                form.cleaned_data["title"], form.cleaned_data["content"])
+            entries = util.list_entries()
+            entries = [entry.lower() for entry in entries]
+            if form.cleaned_data["title"].lower() in entries:
+                return render(request, "encyclopedia/new.html", {
+                    'form': form,
+                    'message': "Error! An encyclopedia entry already exists with the provided title."
+                })
+            else:
+                util.save_entry(
+                    form.cleaned_data["title"], form.cleaned_data["content"])
     else:
         form = NewEntryForm()
     return render(request, "encyclopedia/new.html", {
