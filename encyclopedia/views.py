@@ -14,3 +14,21 @@ def entry(request, title):
         "title": title,
         "content": util.get_entry(title)
     })
+
+
+def search(request):
+    title = request.POST.get("title")
+    if util.get_entry(title) == None:
+        matches = []
+        entries = util.list_entries()
+        for entry in entries:
+            if title in entry:
+                matches.append(entry)
+        return render(request, "encyclopedia/search.html", {
+            "matches": matches
+        })
+    return render(request, "encyclopedia/entry.html", {
+            "title": title,
+            "content": util.get_entry(title)
+    })
+    
