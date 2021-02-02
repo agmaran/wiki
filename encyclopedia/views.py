@@ -17,7 +17,7 @@ def entry(request, title):
             matches = []
             entries = util.list_entries()
             for entry in entries:
-                if title in entry.lower():
+                if title.lower() in entry.lower():
                     matches.append(entry)
             return render(request, "encyclopedia/search.html", {
                 "matches": matches
