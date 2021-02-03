@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django import forms
 from . import util
+from random import randrange
 
 
 class NewEntryForm(forms.Form):
@@ -69,4 +70,13 @@ def edit(request, title):
     return render(request, "encyclopedia/edit.html", {
         "title": title,
         "content": util.get_entry(title)
+    })
+
+
+def random(request):
+    entries = util.list_entries()
+    random = entries[randrange(len(entries))]
+    return render(request, "encyclopedia/entry.html", {
+        "title": random,
+        "content": util.get_entry(random)
     })
