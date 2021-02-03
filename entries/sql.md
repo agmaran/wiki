@@ -1,1 +1,1 @@
-SQL is a standard language for storing, manipulating and retrieving data in **databases**.
+SQL stands for Structured Query Language. SQL lets you access and manipulate databases.
