@@ -1,0 +1,3 @@
+# Framework
+
+A software framework is an abstract or concrete framework under which software providing generic functionality can be selectively changed by additional user-written code, thus providing application-specific software.

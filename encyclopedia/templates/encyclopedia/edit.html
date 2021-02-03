@@ -5,11 +5,14 @@ Edit {{title}} - Encyclopedia
 
 {% block body %}
 <h1>Edit {{title}}</h1>
-<form action="{% url 'edit' title %}" method="POST">
+
+<form action="{% url 'edit' title %}" method="POST" class="row">
     {% csrf_token %}
-    <textarea name="content" rows="4" cols="50">
-        {{ content }}
-    </textarea>
-    <input type="submit" value="Save changes">
+    <div class="input-group col-12">
+        <textarea rows="20" name="content" class="form-control">{{ content }}</textarea>
+    </div>
+    <div class="col-12">
+        <input type="submit" value="Save changes" class="btn btn-primary">
+    </div>
 </form>
 {% endblock %}

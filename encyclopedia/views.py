@@ -6,9 +6,8 @@ import markdown2
 
 
 class NewEntryForm(forms.Form):
-    title = forms.CharField(label='Title for the page')
-    content = forms.CharField(
-        label='Markdown content for the page', widget=forms.Textarea)
+    title = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'size': '20'}))
 
 
 def index(request):
