@@ -57,3 +57,16 @@ def new(request):
     return render(request, "encyclopedia/new.html", {
         'form': form
     })
+
+
+def edit(request, title):
+    if request.method == "POST":
+        util.save_entry(title, request.POST.get('content'))
+        return render(request, "encyclopedia/entry.html", {
+            "title": title,
+            "content": util.get_entry(title)
+        })
+    return render(request, "encyclopedia/edit.html", {
+        "title": title,
+        "content": util.get_entry(title)
+    })
