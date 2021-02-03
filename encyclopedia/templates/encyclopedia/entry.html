@@ -12,8 +12,7 @@ Page not found - Encyclopedia
 <h1>Page not found</h1>
 <div>The requested page was not found.</div>
 {% else %}
-<h1>{{title}}</h1>
-<div>{{content}}</div>
+<div>{{content|safe}}</div>
 <a href="{% url 'edit' title %}">
     Edit entry
 </a>

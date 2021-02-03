@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django import forms
 from . import util
 from random import randrange
+import markdown2
 
 
 class NewEntryForm(forms.Form):
@@ -31,7 +32,7 @@ def entry(request, title):
             })
     return render(request, "encyclopedia/entry.html", {
         "title": title,
-        "content": util.get_entry(title)
+        "content": markdown2.markdown(util.get_entry(title))
     })
 
 
@@ -51,7 +52,7 @@ def new(request):
                     form.cleaned_data["title"], form.cleaned_data["content"])
                 return render(request, "encyclopedia/entry.html", {
                     "title": form.cleaned_data["title"],
-                    "content": util.get_entry(form.cleaned_data["title"])
+                    "content": markdown2.markdown(util.get_entry(form.cleaned_data["title"]))
                 })
     else:
         form = NewEntryForm()
@@ -65,7 +66,7 @@ def edit(request, title):
         util.save_entry(title, request.POST.get('content'))
         return render(request, "encyclopedia/entry.html", {
             "title": title,
-            "content": util.get_entry(title)
+            "content": markdown2.markdown(util.get_entry(title))
         })
     return render(request, "encyclopedia/edit.html", {
         "title": title,
@@ -78,5 +79,5 @@ def random(request):
     random = entries[randrange(len(entries))]
     return render(request, "encyclopedia/entry.html", {
         "title": random,
-        "content": util.get_entry(random)
+        "content": markdown2.markdown(util.get_entry(random))
     })
