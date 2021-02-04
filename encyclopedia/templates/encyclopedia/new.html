@@ -7,9 +7,9 @@ Create New Page
 <h1>Create New Page</h1>
 <h2>{{ message }}</h2>
 
-<form action="{% url 'new' %}" method="POST" class="col-12">
+<form action="{% url 'new' %}" method="POST" class="col-12 pr-4">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" class="btn btn-primary" value="Create">
+    <input type="submit" class="btn btn-primary mt-3" value="Create">
 </form>
 {% endblock %}

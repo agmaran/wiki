@@ -19,6 +19,7 @@ textarea {
 
 .main {
     padding: 10px;
+    overflow-x: hidden;
 }
 
 .search {

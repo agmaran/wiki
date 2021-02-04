@@ -1,0 +1,1 @@
+Software is a ***collection of instructions*** and data that tell the computer how to work.

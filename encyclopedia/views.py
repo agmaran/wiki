@@ -3,11 +3,15 @@ from django import forms
 from . import util
 from random import randrange
 import markdown2
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 class NewEntryForm(forms.Form):
-    title = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'size': '20'}))
+    title = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control'}))
+    content = forms.CharField(widget=forms.Textarea(
+        attrs={'class': 'form-control', 'size': '20'}))
 
 
 def index(request):
@@ -49,10 +53,7 @@ def new(request):
             else:
                 util.save_entry(
                     form.cleaned_data["title"], form.cleaned_data["content"])
-                return render(request, "encyclopedia/entry.html", {
-                    "title": form.cleaned_data["title"],
-                    "content": markdown2.markdown(util.get_entry(form.cleaned_data["title"]))
-                })
+                return HttpResponseRedirect(reverse('entry', args=[form.cleaned_data["title"]]))
     else:
         form = NewEntryForm()
     return render(request, "encyclopedia/new.html", {
@@ -63,10 +64,7 @@ def new(request):
 def edit(request, title):
     if request.method == "POST":
         util.save_entry(title, request.POST.get('content'))
-        return render(request, "encyclopedia/entry.html", {
-            "title": title,
-            "content": markdown2.markdown(util.get_entry(title))
-        })
+        return HttpResponseRedirect(reverse('entry', args=[title]))
     return render(request, "encyclopedia/edit.html", {
         "title": title,
         "content": util.get_entry(title)
@@ -76,7 +74,4 @@ def edit(request, title):
 def random(request):
     entries = util.list_entries()
     random = entries[randrange(len(entries))]
-    return render(request, "encyclopedia/entry.html", {
-        "title": random,
-        "content": markdown2.markdown(util.get_entry(random))
-    })
+    return HttpResponseRedirect(reverse('entry', args=[random]))

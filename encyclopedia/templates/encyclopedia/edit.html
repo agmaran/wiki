@@ -4,14 +4,14 @@ Edit {{title}} - Encyclopedia
 {% endblock %}
 
 {% block body %}
-<h1>Edit {{title}}</h1>
+<h1 class="mt-0">Edit <small class="text-muted">{{title}}</small></h1>
 
 <form action="{% url 'edit' title %}" method="POST" class="row">
     {% csrf_token %}
-    <div class="input-group col-12">
-        <textarea rows="20" name="content" class="form-control">{{ content }}</textarea>
+    <div class="input-group col-12 pr-5">
+        <textarea rows="19" name="content" class="form-control">{{ content }}</textarea>
     </div>
-    <div class="col-12">
+    <div class="col-12 mt-2">
         <input type="submit" value="Save changes" class="btn btn-primary">
     </div>
 </form>
