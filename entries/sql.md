@@ -30,6 +30,38 @@ SQL is a domain specific language used in **programming** and designed for manag
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 
@@ -46,7 +78,31 @@ SQL is a domain specific language used in **programming** and designed for manag
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
+
+
+
+
+
+
+
+
 
 
 
