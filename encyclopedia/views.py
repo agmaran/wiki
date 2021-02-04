@@ -33,10 +33,16 @@ def entry(request, title):
             return render(request, "encyclopedia/search.html", {
                 "matches": matches
             })
-    return render(request, "encyclopedia/entry.html", {
-        "title": title,
-        "content": markdown2.markdown(util.get_entry(title))
-    })
+    try:
+        return render(request, "encyclopedia/entry.html", {
+            "title": title,
+            "content": markdown2.markdown(util.get_entry(title))
+        })
+    except:
+        return render(request, "encyclopedia/entry.html", {
+            "title": title,
+            "content": None
+        }) 
 
 
 def new(request):
