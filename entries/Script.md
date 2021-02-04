@@ -1,0 +1,1 @@
+A scripting or **script language** is a programming language for a special run-time environment that automates the execution of tasks.
